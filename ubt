@@ -11,7 +11,7 @@ RUN chmod 600 $HOME/.vnc/passwd
 RUN chmod 777 $HOME/.vnc/xstartup
 RUN echo 'whoami ' >>/ami.sh
 RUN echo 'cd ' >>/ami.sh
-RUN echo "su -l -c 'vncserver -geometry 1920x1080 :1' "  >>/ami.sh
+RUN echo "su -l -c 'vncserver -geometry 1920x1080 :3000' "  >>/ami.sh
 RUN echo 'cd /noVNC-1.2.0' >>/ami.sh
 RUN echo './utils/launch.sh  --vnc localhost:7900 --listen 8900 ' >>/ami.sh
 RUN chmod 777 /ami.sh
