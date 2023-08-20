@@ -1,7 +1,7 @@
 FROM ubuntu
 RUN dpkg --add-architecture i386
 RUN apt update
-RUN apt install ubuntu-gnome-desktop dbus-x11 firefox iproute2 xz-utils curl git wget tightvncserver -y
+RUN DEBIAN_FRONTEND=noninteractive apt install ubuntu-gnome-desktop dbus-x11 firefox iproute2 xz-utils curl git wget tightvncserver -y
 RUN wget https://github.com/novnc/noVNC/archive/refs/tags/v1.2.0.tar.gz
 RUN tar -xvf v1.2.0.tar.gz
 RUN mkdir  $HOME/.vnc
