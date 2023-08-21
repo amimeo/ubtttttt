@@ -6,18 +6,18 @@ RUN wget https://github.com/novnc/noVNC/archive/refs/tags/v1.2.0.tar.gz
 RUN tar -xvf v1.2.0.tar.gz
 RUN mkdir  $HOME/.vnc
 RUN echo 'ami' | vncpasswd -f > $HOME/.vnc/passwd
-RUN echo '/bin/env  MOZ_FAKE_NO_SANDBOX=1  dbus-launch gnome-session gnome-session-properties'  > $HOME/.vnc/xstartup
-RUN echo 'export XKL_XMODMAP_DISABLE=1
-export XDG_CURRENT_DESKTOP="GNOME-Flashback:GNOME"
-export XDG_MENU_PREFIX="gnome-flashback-"
-gnome-session --session=gnome-flashback-metacity --disable-acceleration-check &'  > $HOME/.vnc/xstartup
+RUN echo '/bin/env  MOZ_FAKE_NO_SANDBOX=1  dbus-launch gnome-session gnome-session-properties'  >> $HOME/.vnc/xstartup
+RUN echo 'export XKL_XMODMAP_DISABLE=1'  >> $HOME/.vnc/xstartup
+RUN echo 'export XDG_CURRENT_DESKTOP="GNOME-Flashback:GNOME"'  >> $HOME/.vnc/xstartup
+RUN echo 'export XDG_MENU_PREFIX="gnome-flashback-"'  >> $HOME/.vnc/xstartup
+RUN echo 'gnome-session --session=gnome-flashback-metacity --disable-acceleration-check &'  >> $HOME/.vnc/xstartup
 RUN chmod 600 $HOME/.vnc/passwd
 RUN chmod 777 $HOME/.vnc/xstartup
 RUN echo 'whoami ' >>/ami.sh
 RUN echo 'cd ' >>/ami.sh
-RUN echo "su -l -c 'vncserver :2000 -geometry 1920x1080' "  >>/ami.sh
+RUN echo "su -l -c 'vncserver :1 -geometry 1920x1080' "  >>/ami.sh
 RUN echo 'cd /noVNC-1.2.0' >>/ami.sh
-RUN echo './utils/launch.sh  --vnc localhost:7900 --listen 8900 ' >>/ami.sh
+RUN echo './utils/launch.sh  --vnc localhost:5901 --listen 8900 ' >>/ami.sh
 RUN chmod 777 /ami.sh
 EXPOSE 8900
 CMD  /ami.sh
